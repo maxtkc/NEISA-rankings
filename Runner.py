@@ -2,8 +2,8 @@ import rank_calculator
 import csv
 
 schoolslink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR4d8JvuxteLJ7NqAvZhjYzRggjV_ptKUQCNNsQAVrblK9r2h3CFovSODtSpg7Jp7_xt0lFdLjxUedQ/pub?output=csv"
-coedRegattaLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYuBfRn534EQy6tXw957Ree0IPLUxyaFri25OQtd_0n5SyG3J-5ELfpUPgwUKGxT_qfDmzrmtds8Y2/pub?output=csv"
-womensRegattaLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrN9Sdev0TpLnAzuUgPQFwEa_VXcmsXX9CKoR3Y5p4fFydyh8WwdM1Xx-yaOWobLlNYPYWUMjGql1w/pub?output=csv"
+coedRegattaLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTOoxKnq24sx4SdqrlFSYI4BifVU7fovjS3IqHJLSIiMihvREJCECyzHG3S6KR8yfRlQFokSkIaTwNz/pub?output=csv"
+womensRegattaLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS92sboX3EraFvvR0xE5weaHzem3bST84DVm1SP4gpK3xFD-WYdms9PDm_QnqPhoyzWzYr5umJ8ESTs/pub?output=csv"
 
 coed_rankings_output_file = "rankings.csv"
 coed_component_scores_file = "component_scores.csv"
