@@ -12,10 +12,10 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: Georgia, 'Times New Roman', serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f8f9fa;
             min-height: 100vh;
         }
         
@@ -28,26 +28,31 @@
         .header {
             text-align: center;
             margin-bottom: 40px;
-            color: white;
+            padding: 30px 0;
+            background: white;
+            border-bottom: 4px solid #CC3333;
+            margin-bottom: 0;
         }
         
         .header h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #CC3333;
+            font-weight: bold;
         }
         
         .header p {
-            font-size: 1.2em;
-            opacity: 0.9;
+            font-size: 1.1em;
+            color: #666;
+            font-style: italic;
         }
         
         .last-updated {
             text-align: center;
-            color: white;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-            opacity: 0.8;
+            color: #666;
+            margin: 20px 0 30px 0;
+            font-size: 1em;
+            font-style: italic;
         }
         
         .rankings-container {
@@ -65,22 +70,19 @@
         
         .ranking-section {
             background: white;
-            border-radius: 15px;
+            border: 1px solid #ddd;
             padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .ranking-section:hover {
-            transform: translateY(-5px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
         }
         
         .ranking-section h2 {
-            color: #4a5568;
+            color: #CC3333;
             margin-bottom: 20px;
-            font-size: 1.8em;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+            font-size: 1.6em;
+            border-bottom: 2px solid #CC3333;
+            padding-bottom: 8px;
+            font-weight: bold;
         }
         
         .ranking-table {
@@ -89,84 +91,96 @@
         }
         
         .ranking-table th {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #CC3333;
             color: white;
             padding: 12px;
             text-align: left;
-            font-weight: 600;
+            font-weight: bold;
+            border-bottom: 2px solid #AA2222;
         }
         
         .ranking-table td {
             padding: 12px;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #ddd;
         }
         
         .ranking-table tr:nth-child(even) {
-            background-color: #f8fafc;
+            background-color: #f9f9f9;
         }
         
         .ranking-table tr:hover {
-            background-color: #edf2f7;
+            background-color: #f0f0f0;
         }
         
         .rank-number {
             font-weight: bold;
-            color: #667eea;
+            color: #CC3333;
             width: 50px;
         }
         
         .top-3 {
-            background: linear-gradient(135deg, #ffd700, #ffed4e) !important;
+            background: #fff3cd !important;
+            border-left: 4px solid #CC3333;
             font-weight: bold;
         }
         
         .top-3 .rank-number {
-            color: #b7791f;
+            color: #CC3333;
         }
         
         .download-section {
             text-align: center;
             margin-top: 40px;
+            background: white;
+            padding: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .download-section h3 {
+            color: #CC3333;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
         }
         
         .download-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
         
         .download-link {
-            background: white;
-            color: #667eea;
-            padding: 12px 24px;
+            background: #CC3333;
+            color: white;
+            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #CC3333;
+            font-weight: bold;
             transition: all 0.3s ease;
         }
         
         .download-link:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background: white;
+            color: #CC3333;
+            border: 1px solid #CC3333;
         }
         
         .loading {
             text-align: center;
-            color: white;
+            color: #666;
             font-size: 1.2em;
             margin: 50px 0;
+            background: white;
+            padding: 30px;
+            border: 1px solid #ddd;
         }
         
         .error {
-            background: #fed7d7;
-            border: 1px solid #fc8181;
-            color: #c53030;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
             padding: 15px;
-            border-radius: 8px;
             margin: 20px 0;
         }
     </style>
@@ -185,7 +199,7 @@
         </div>
         
         <div class="download-section">
-            <h3 style="color: white; margin-bottom: 20px;">Download Data</h3>
+            <h3>Download Data</h3>
             <div class="download-links">
                 <a href="rankings.csv" class="download-link" download>Coed Rankings CSV</a>
                 <a href="womensrankings.csv" class="download-link" download>Women's Rankings CSV</a>
