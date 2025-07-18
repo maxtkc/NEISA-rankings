@@ -617,10 +617,23 @@
                 document.getElementById('updateStatus').innerHTML = 
                     '<div style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 10px;">✓ CSV links updated successfully! Rankings will be regenerated in a few minutes.</div>';
                 
+                // Update "last updated" immediately to show action was triggered
+                const now = new Date();
+                const estTime = now.toLocaleString('en-US', {
+                    timeZone: 'America/New_York',
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    timeZoneName: 'short'
+                });
+                document.getElementById('lastUpdated').textContent = `Rankings update triggered: ${estTime}`;
+                
                 // Refresh rankings after delay
                 setTimeout(() => {
                     loadRankings();
-                }, 60000); // Wait 1 minute then refresh
+                }, 90000); // Wait 1.5 minutes then refresh
                 
             } catch (error) {
                 console.error('Update error:', error);
