@@ -34,30 +34,31 @@ jobs:
     - name: Create web page
       run: |
         mkdir -p docs
-        python -c "
-import csv
-import json
-from datetime import datetime
-
-# Read CSV files
-def read_csv(filename):
-    with open(filename, 'r') as f:
-        reader = csv.DictReader(f)
-        return list(reader)
-
-coed_rankings = read_csv('rankings.csv')
-womens_rankings = read_csv('womensrankings.csv')
-
-# Create JSON data for the web page
-data = {
-    'timestamp': '${{ steps.timestamp.outputs.timestamp }}',
-    'coed_rankings': coed_rankings,
-    'womens_rankings': womens_rankings
-}
-
-with open('docs/rankings.json', 'w') as f:
-    json.dump(data, f, indent=2)
-"
+        cat > create_json.py << 'EOF'
+        import csv
+        import json
+        import os
+        
+        # Read CSV files
+        def read_csv(filename):
+            with open(filename, 'r') as f:
+                reader = csv.DictReader(f)
+                return list(reader)
+        
+        coed_rankings = read_csv('rankings.csv')
+        womens_rankings = read_csv('womensrankings.csv')
+        
+        # Create JSON data for the web page
+        data = {
+            'timestamp': '${{ steps.timestamp.outputs.timestamp }}',
+            'coed_rankings': coed_rankings,
+            'womens_rankings': womens_rankings
+        }
+        
+        with open('docs/rankings.json', 'w') as f:
+            json.dump(data, f, indent=2)
+        EOF
+        python create_json.py
         
     - name: Copy static files
       run: |
