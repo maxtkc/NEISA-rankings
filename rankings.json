@@ -1,129 +1,125 @@
 {
-  "timestamp": "2025-07-18 05:48 UTC",
+  "timestamp": "2025-07-18 05:51 UTC",
   "coed_rankings": [
     {
-      "School": "Yale University",
-      "Score": "45.5"
+      "School": "Harvard University",
+      "Score": "45.59"
     },
     {
       "School": "Brown University",
-      "Score": "42.32"
+      "Score": "43.74"
     },
     {
-      "School": "Dartmouth College",
-      "Score": "41.5"
-    },
-    {
-      "School": "Harvard University",
-      "Score": "39.14"
-    },
-    {
-      "School": "Roger Williams University",
-      "Score": "38.79"
+      "School": "Yale University",
+      "Score": "43.24"
     },
     {
       "School": "U. S. Coast Guard Academy",
-      "Score": "38.35"
+      "Score": "42.12"
+    },
+    {
+      "School": "Dartmouth College",
+      "Score": "40.07"
+    },
+    {
+      "School": "Roger Williams University",
+      "Score": "37.730000000000004"
     },
     {
       "School": "Boston College",
-      "Score": "36.64"
-    },
-    {
-      "School": "Tufts University",
-      "Score": "36.33"
-    },
-    {
-      "School": "Connecticut College",
-      "Score": "32.31"
-    },
-    {
-      "School": "Bowdoin College",
-      "Score": "31.000000000000004"
-    },
-    {
-      "School": "University of Rhode Island",
-      "Score": "28.27"
+      "Score": "36.230000000000004"
     },
     {
       "School": "Massachusetts Institute of Technology",
-      "Score": "26.619999999999997"
+      "Score": "34.89"
     },
     {
-      "School": "Boston University",
-      "Score": "26.119999999999997"
+      "School": "Tufts University",
+      "Score": "33.94"
+    },
+    {
+      "School": "University of Rhode Island",
+      "Score": "33.9"
+    },
+    {
+      "School": "Bowdoin College",
+      "Score": "33.11"
     },
     {
       "School": "Northeastern University",
-      "Score": "25.400000000000002"
+      "Score": "24.979999999999997"
     },
     {
       "School": "University of Vermont",
-      "Score": "20.88"
+      "Score": "22.16"
     },
     {
-      "School": "Salve Regina University",
-      "Score": "19.78"
-    },
-    {
-      "School": "Massachusetts Maritime Academy",
-      "Score": "19.66"
+      "School": "Connecticut College",
+      "Score": "22.02"
     },
     {
       "School": "Maine Maritime Academy",
-      "Score": "19.09"
+      "Score": "21.53"
     },
     {
-      "School": "Fairfield University",
-      "Score": "18.79"
+      "School": "Massachusetts Maritime Academy",
+      "Score": "21.36"
     },
     {
-      "School": "Bates College",
-      "Score": "18.28"
+      "School": "Boston University",
+      "Score": "20.91"
     },
     {
       "School": "University of New Hampshire",
-      "Score": "15.559999999999999"
+      "Score": "20.85"
+    },
+    {
+      "School": "Salve Regina University",
+      "Score": "19.340000000000003"
+    },
+    {
+      "School": "Bates College",
+      "Score": "19.15"
     },
     {
       "School": "Middlebury College",
-      "Score": "13.46"
-    },
-    {
-      "School": "University of Massachusetts at Amherst",
-      "Score": "10.489999999999998"
-    },
-    {
-      "School": "Wentworth Institute of Technology",
-      "Score": "8.209999999999999"
-    },
-    {
-      "School": "Olin College of Engineering",
-      "Score": "7.789999999999999"
-    },
-    {
-      "School": "Bentley University",
-      "Score": "5.2"
-    },
-    {
-      "School": "Williams College",
-      "Score": "4.12"
-    },
-    {
-      "School": "University of Massachusetts at Dartmouth",
-      "Score": "3.13"
+      "Score": "16.1"
     },
     {
       "School": "McGill University",
-      "Score": "2.37"
+      "Score": "13.94"
     },
     {
-      "School": "Wesleyan University",
-      "Score": "2.35"
+      "School": "Olin College of Engineering",
+      "Score": "11.510000000000002"
+    },
+    {
+      "School": "University of Massachusetts at Amherst",
+      "Score": "10.940000000000001"
     },
     {
       "School": "University of Connecticut",
-      "Score": "1.01"
+      "Score": "7.18"
+    },
+    {
+      "School": "Fairfield University",
+      "Score": "6.7700000000000005"
+    },
+    {
+      "School": "Amherst College",
+      "Score": "6.72"
+    },
+    {
+      "School": "Bentley University",
+      "Score": "4.47"
+    },
+    {
+      "School": "University of Massachusetts at Dartmouth",
+      "Score": "3.2800000000000002"
+    },
+    {
+      "School": "Williams College",
+      "Score": "1.6"
     },
     {
       "School": "Emmanuel College",
@@ -139,89 +135,93 @@
     },
     {
       "School": "Sacred Heart University",
-      "Score": "0"
+      "Score": "0.0"
     },
     {
       "School": "Wellesley College",
       "Score": "0"
     },
     {
+      "School": "Wesleyan University",
+      "Score": "0.0"
+    },
+    {
       "School": "Worcester Polytechnical Institute",
       "Score": "0"
     },
     {
-      "School": "Amherst College",
+      "School": "Wentworth Institute of Technology",
       "Score": "0"
     }
   ],
   "womens_rankings": [
     {
       "School": "Yale University",
-      "Score": "45.13"
+      "Score": "43.42"
     },
     {
-      "School": "Brown University",
-      "Score": "41.339999999999996"
+      "School": "Boston College",
+      "Score": "42.26"
     },
     {
-      "School": "Dartmouth College",
+      "School": "Massachusetts Institute of Technology",
       "Score": "37.39"
     },
     {
       "School": "Harvard University",
-      "Score": "37.18"
+      "Score": "36.87"
     },
     {
-      "School": "Boston College",
-      "Score": "35.94"
+      "School": "Dartmouth College",
+      "Score": "36.4"
     },
     {
-      "School": "Massachusetts Institute of Technology",
-      "Score": "32.910000000000004"
-    },
-    {
-      "School": "U. S. Coast Guard Academy",
-      "Score": "28.229999999999997"
+      "School": "Brown University",
+      "Score": "36.08"
     },
     {
       "School": "Bowdoin College",
-      "Score": "27.41"
+      "Score": "27.0"
     },
     {
-      "School": "Tufts University",
-      "Score": "24.290000000000003"
-    },
-    {
-      "School": "Roger Williams University",
-      "Score": "19.78"
-    },
-    {
-      "School": "University of Vermont",
-      "Score": "15.080000000000002"
-    },
-    {
-      "School": "Boston University",
-      "Score": "13.49"
+      "School": "U. S. Coast Guard Academy",
+      "Score": "26.31"
     },
     {
       "School": "University of Rhode Island",
-      "Score": "11.940000000000001"
+      "Score": "24.1"
     },
     {
       "School": "Northeastern University",
-      "Score": "11.879999999999999"
+      "Score": "23.009999999999998"
+    },
+    {
+      "School": "Roger Williams University",
+      "Score": "19.749999999999996"
+    },
+    {
+      "School": "Tufts University",
+      "Score": "16.39"
+    },
+    {
+      "School": "Boston University",
+      "Score": "8.379999999999999"
+    },
+    {
+      "School": "University of Vermont",
+      "Score": "6.330000000000001"
+    },
+    {
+      "School": "McGill University",
+      "Score": "3.43"
     },
     {
       "School": "Connecticut College",
-      "Score": "5.52"
-    },
-    {
-      "School": "Salve Regina University",
-      "Score": "4.33"
+      "Score": "0.64"
     },
     {
       "School": "Bates College",
-      "Score": "0"
+      "Score": "0.6"
     },
     {
       "School": "Bentley University",
@@ -241,19 +241,15 @@
     },
     {
       "School": "Maine Maritime Academy",
-      "Score": "0"
+      "Score": "0.0"
     },
     {
       "School": "Massachusetts Maritime Academy",
       "Score": "0"
     },
     {
-      "School": "McGill University",
-      "Score": "0"
-    },
-    {
       "School": "Middlebury College",
-      "Score": "0.0"
+      "Score": "0"
     },
     {
       "School": "Providence College",
@@ -261,6 +257,10 @@
     },
     {
       "School": "Sacred Heart University",
+      "Score": "0"
+    },
+    {
+      "School": "Salve Regina University",
       "Score": "0"
     },
     {
