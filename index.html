@@ -303,7 +303,7 @@
             </div>
             
             <div id="authButtons">
-                <button class="btn" onclick="authenticateGitHub()">Login with GitHub</button>
+                <button class="btn" onclick="authenticateGitHub()">Setup GitHub Access</button>
             </div>
             
             <div id="updateForm" style="display: none;">
@@ -415,78 +415,41 @@
             adminSection.classList.toggle('show');
         }
         
-        async function authenticateGitHub() {
-            // GitHub OAuth Device Flow for client-side apps
-            const clientId = 'Ov23liSIKKfe7kJDQiP0'; // Public client ID for this app
+        function authenticateGitHub() {
+            // Use Personal Access Token approach instead of OAuth
+            updateAuthStatus('Please create a GitHub Personal Access Token with "repo" permissions and paste it below:', 'info');
             
-            try {
-                // Step 1: Get device code
-                const deviceResponse = await fetch('https://github.com/login/device/code', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        client_id: clientId,
-                        scope: 'repo'
-                    })
-                });
-                
-                const deviceData = await deviceResponse.json();
-                
-                if (deviceData.error) {
-                    throw new Error(deviceData.error_description);
-                }
-                
-                // Step 2: Show user code and open GitHub
-                updateAuthStatus(`Please go to: ${deviceData.verification_uri} and enter code: ${deviceData.user_code}`, 'info');
-                
-                // Open GitHub in new tab
-                window.open(deviceData.verification_uri, '_blank');
-                
-                // Step 3: Poll for authorization
-                const pollForToken = async () => {
-                    const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            client_id: clientId,
-                            device_code: deviceData.device_code,
-                            grant_type: 'urn:ietf:params:oauth:grant-type:device_code'
-                        })
-                    });
-                    
-                    const tokenData = await tokenResponse.json();
-                    
-                    if (tokenData.access_token) {
-                        githubToken = tokenData.access_token;
-                        authenticated = true;
-                        updateAuthStatus('Successfully authenticated! You can now update CSV links.', 'success');
-                        document.getElementById('authButtons').style.display = 'none';
-                        document.getElementById('updateForm').style.display = 'block';
-                        loadCurrentLinks();
-                    } else if (tokenData.error === 'authorization_pending') {
-                        // Continue polling
-                        setTimeout(pollForToken, 5000);
-                    } else if (tokenData.error === 'slow_down') {
-                        // Slow down polling
-                        setTimeout(pollForToken, 10000);
-                    } else {
-                        throw new Error(tokenData.error_description || 'Authentication failed');
-                    }
-                };
-                
-                // Start polling after 5 seconds
-                setTimeout(pollForToken, 5000);
-                
-            } catch (error) {
-                console.error('Auth error:', error);
-                updateAuthStatus(`Authentication failed: ${error.message}`, 'error');
+            const tokenInput = document.createElement('div');
+            tokenInput.innerHTML = `
+                <div style="margin: 20px 0;">
+                    <p style="margin-bottom: 10px;">
+                        1. Go to <a href="https://github.com/settings/tokens" target="_blank" style="color: #CC3333;">GitHub Personal Access Tokens</a><br>
+                        2. Click "Generate new token (classic)"<br>
+                        3. Select "repo" scope<br>
+                        4. Copy the token and paste it below:
+                    </p>
+                    <input type="password" id="tokenInput" placeholder="Paste your Personal Access Token here" 
+                           style="width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ddd;">
+                    <button onclick="setGitHubToken()" class="btn">Use This Token</button>
+                </div>
+            `;
+            
+            document.getElementById('authButtons').innerHTML = tokenInput.innerHTML;
+        }
+        
+        function setGitHubToken() {
+            const token = document.getElementById('tokenInput').value.trim();
+            if (!token) {
+                alert('Please enter a valid token');
+                return;
             }
+            
+            githubToken = token;
+            authenticated = true;
+            updateAuthStatus('Token set successfully! You can now update CSV links.', 'success');
+            document.getElementById('authButtons').style.display = 'none';
+            document.getElementById('updateForm').style.display = 'block';
+            loadCurrentLinks();
         }
         
         function updateAuthStatus(message, type) {
