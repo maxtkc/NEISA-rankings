@@ -1,0 +1,80 @@
+name: Daily NEISA Rankings
+
+on:
+  schedule:
+    # Run daily at 6 AM UTC (2 AM EST)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  calculate-rankings:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas numpy termcolor
+        
+    - name: Run rankings calculation
+      run: python Runner.py
+      
+    - name: Generate timestamp
+      id: timestamp
+      run: echo "timestamp=$(date -u '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_OUTPUT
+      
+    - name: Create web page
+      run: |
+        mkdir -p docs
+        python -c "
+import csv
+import json
+from datetime import datetime
+
+# Read CSV files
+def read_csv(filename):
+    with open(filename, 'r') as f:
+        reader = csv.DictReader(f)
+        return list(reader)
+
+coed_rankings = read_csv('rankings.csv')
+womens_rankings = read_csv('womensrankings.csv')
+
+# Create JSON data for the web page
+data = {
+    'timestamp': '${{ steps.timestamp.outputs.timestamp }}',
+    'coed_rankings': coed_rankings,
+    'womens_rankings': womens_rankings
+}
+
+with open('docs/rankings.json', 'w') as f:
+    json.dump(data, f, indent=2)
+"
+        
+    - name: Copy static files
+      run: |
+        cp rankings.csv docs/
+        cp womensrankings.csv docs/
+        cp component_scores.csv docs/
+        cp womens_component_scores.csv docs/
+        
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: rankings-data
+        path: docs/
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+        publish_branch: gh-pages
