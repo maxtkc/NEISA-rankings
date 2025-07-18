@@ -416,40 +416,81 @@
         }
         
         function authenticateGitHub() {
-            // Use Personal Access Token approach instead of OAuth
-            updateAuthStatus('Please create a GitHub Personal Access Token with "repo" permissions and paste it below:', 'info');
+            updateAuthStatus('Please create a fine-grained GitHub Personal Access Token for this repository:', 'info');
             
             const tokenInput = document.createElement('div');
             tokenInput.innerHTML = `
                 <div style="margin: 20px 0;">
-                    <p style="margin-bottom: 10px;">
-                        1. Go to <a href="https://github.com/settings/tokens" target="_blank" style="color: #CC3333;">GitHub Personal Access Tokens</a><br>
-                        2. Click "Generate new token (classic)"<br>
-                        3. Select "repo" scope<br>
-                        4. Copy the token and paste it below:
+                    <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; margin-bottom: 15px; border-radius: 4px;">
+                        <strong>🔐 Security Note:</strong> Use fine-grained tokens for better security!
+                    </div>
+                    <p style="margin-bottom: 10px; line-height: 1.8;">
+                        1. Go to <a href="https://github.com/settings/personal-access-tokens/fine-grained" target="_blank" style="color: #CC3333;"><strong>Fine-grained Personal Access Tokens</strong></a><br>
+                        2. Click <strong>"Generate new token"</strong><br>
+                        3. Set <strong>Repository access</strong> to: <code>maxtkc/NEISA-rankings</code> only<br>
+                        4. Under <strong>Repository permissions</strong>, set:<br>
+                        &nbsp;&nbsp;&nbsp;• <strong>Contents:</strong> Write<br>
+                        &nbsp;&nbsp;&nbsp;• <strong>Actions:</strong> Write<br>
+                        5. Set expiration (recommended: 90 days)<br>
+                        6. Copy the token and paste it below:
                     </p>
-                    <input type="password" id="tokenInput" placeholder="Paste your Personal Access Token here" 
+                    <input type="password" id="tokenInput" placeholder="Paste your fine-grained Personal Access Token here" 
                            style="width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ddd;">
                     <button onclick="setGitHubToken()" class="btn">Use This Token</button>
+                    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">
+                        <em>⚠️ Token will only be stored temporarily in browser memory and cleared after use.</em>
+                    </p>
                 </div>
             `;
             
             document.getElementById('authButtons').innerHTML = tokenInput.innerHTML;
         }
         
-        function setGitHubToken() {
+        async function setGitHubToken() {
             const token = document.getElementById('tokenInput').value.trim();
             if (!token) {
                 alert('Please enter a valid token');
                 return;
             }
             
-            githubToken = token;
-            authenticated = true;
-            updateAuthStatus('Token set successfully! You can now update CSV links.', 'success');
-            document.getElementById('authButtons').style.display = 'none';
-            document.getElementById('updateForm').style.display = 'block';
-            loadCurrentLinks();
+            // Validate token by testing repository access
+            try {
+                updateAuthStatus('Validating token...', 'info');
+                const testResponse = await fetch('https://api.github.com/repos/maxtkc/NEISA-rankings', {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!testResponse.ok) {
+                    throw new Error('Token validation failed. Please check your token permissions.');
+                }
+                
+                githubToken = token;
+                authenticated = true;
+                
+                // Clear the input field immediately
+                document.getElementById('tokenInput').value = '';
+                
+                updateAuthStatus('Token validated successfully! You can now update CSV links.', 'success');
+                document.getElementById('authButtons').style.display = 'none';
+                document.getElementById('updateForm').style.display = 'block';
+                loadCurrentLinks();
+                
+                // Set token to expire from memory after 30 minutes
+                setTimeout(() => {
+                    githubToken = null;
+                    authenticated = false;
+                    updateAuthStatus('Token expired for security. Please re-authenticate if needed.', 'error');
+                    document.getElementById('updateForm').style.display = 'none';
+                    document.getElementById('authButtons').style.display = 'block';
+                }, 30 * 60 * 1000); // 30 minutes
+                
+            } catch (error) {
+                updateAuthStatus(`Token validation failed: ${error.message}`, 'error');
+                document.getElementById('tokenInput').value = ''; // Clear failed token
+            }
         }
         
         function updateAuthStatus(message, type) {
